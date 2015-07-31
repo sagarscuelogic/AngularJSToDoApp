@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="todo">
+    <head>
+        <title>Angular JS ToDo App</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="js/libs/angular.js/angular.js"></script>
+        <script type="text/javascript" src="js/libs/underscore.js/underscore.js"></script>
+        <script type="text/javascript" src="js/todos.js"></script>
+        <link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+        <link type="text/css" rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css" />
+        <link type="text/css" rel="stylesheet" href="css/todos.css" />
+    </head>
+    <body class="container">
+        <h1 class="page-header">Angular ToDo App</h1>
+        <div ng-controller="ToDoController as ToDoCtrl">
+            <form class="form-horizontal well well-sm" ng-submit="ToDoCtrl.add();">
+                <input type="text" class="input-sm" ng-model="ToDoCtrl.todo.text" placeholder="Enter To Do Text"/>
+                <button type="submit" class="btn btn-sm btn-success"><i class="glyphicon glyphicon-plus"></i> Save</button>
+            </form>
+            <h3>Total Todos: {{ToDoCtrl.todos.length}}</h3>
+            <ul class="unstyled">
+                <li ng-repeat="todo in ToDoCtrl.todos">
+                    <input type="checkbox" ng-model="todo.isDone" />
+                    <span class="todo-{{todo.isDone}}">{{todo.text}}</span>
+                </li>
+                <li>
+                    <input type="checkbox" ng-model="ToDoCtrl.todo.isDone" ng-show="ToDoCtrl.todo.text" />
+                    <span class="todo-{{ToDoCtrl.todo.isDone}}" >{{ToDoCtrl.todo.text | capitalize}}</span>
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>
